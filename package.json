@@ -1,0 +1,14 @@
+{
+  "name": "mark-tracking-node",
+  "description": "Mark Tracking Node",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "4.0.0",
+    "morgan": "1.0.0",
+    "amqplib": "0.1.3"
+  },
+  "devDependencies": {
+    "nodemon": "1.0.17"
+  }
+}
