@@ -1,7 +1,7 @@
 {
   "app": {
     "log_level": "dev",
-    "port": 5555,
+    "port": 5533,
     "responseHeaders": {
       "Content-Type": "text/javascript",
       "Cache-Control": "no-cache, no-store, max-age=0, must-revalidate",
