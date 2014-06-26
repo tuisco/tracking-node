@@ -7,7 +7,7 @@ var morgan = require('morgan')
   , argv = require('minimist')(process.argv.slice(2))
   , logStream = require('./lib/logStream')
   , server = require('./lib/server')
-  , Starling = require('./starling')
+  , Starling = require('./lib/starling')
   , app = express();
 
 var port   = process.env.PORT || argv.port
