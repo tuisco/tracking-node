@@ -2,7 +2,8 @@
 
 "use strict";
 
-var morgan = require('morgan')
+var newrelic = require('newrelic')
+  , morgan = require('morgan')
   , express = require('express')
   , argv = require('minimist')(process.argv.slice(2))
   , logStream = require('./lib/logStream')
