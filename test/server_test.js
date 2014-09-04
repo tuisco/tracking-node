@@ -83,13 +83,14 @@ describe("The server", function () {
   describe("GET /reevoomark/track/impression", function () {
     it("Pushes a message onto the queue", function (done) {
       request(app)
-        .get("/reevoomark/track/impression?product_id=99&retailer_id=1&badge_type=BADGE_TYPE&badge_variant=BADGE_VARIANT&badge_name=BADGE_NAME")
+        .get("/reevoomark/track/impression?product_id=99&retailer_product_series_id=SERIES_ID&retailer_id=1&badge_type=BADGE_TYPE&badge_variant=BADGE_VARIANT&badge_name=BADGE_NAME")
         .end(function (val) {
           theMessage().should.eql({
             name: 'impression',
             body: {
               requested_at: 'the-current-time',
               product_id: '99',
+              retailer_product_series_id: 'SERIES_ID',
               retailer_id: '1',
               badge_type: 'BADGE_TYPE',
               badge_variant: 'BADGE_VARIANT',
@@ -104,13 +105,14 @@ describe("The server", function () {
   describe("GET /reevoomark/track/non_impression", function () {
     it("Pushes a message onto the queue", function (done) {
       request(app)
-        .get("/reevoomark/track/non_impression?product_id=99&retailer_id=1&badge_type=BADGE_TYPE&badge_variant=BADGE_VARIANT")
+        .get("/reevoomark/track/non_impression?product_id=99&retailer_product_series_id=SERIES_ID&retailer_id=1&badge_type=BADGE_TYPE&badge_variant=BADGE_VARIANT")
         .end(function (val) {
           theMessage().should.eql({
             name: 'non_impression',
             body: {
               requested_at: 'the-current-time',
               product_id: '99',
+              retailer_product_series_id: 'SERIES_ID',
               retailer_id: '1',
               badge_type: 'BADGE_TYPE',
               badge_variant: 'BADGE_VARIANT'
