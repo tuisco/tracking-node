@@ -18,6 +18,8 @@ app.use(morgan({ format: 'tiny', stream: stream }));
 server(app, starling);
 
 app.enable('trust proxy');
-app.listen(port, function () { console.log('Server listening on port %d', port); });
+app.listen(port, function () {
+  console.log('Server listening on port %d\nStarling port(s): %s', port, argv._);
+});
 
 exports = module.exports = app;
