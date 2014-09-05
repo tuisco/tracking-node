@@ -7,12 +7,6 @@ set :npm_target_path, -> { release_path.join('node_modules') }
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 namespace :deploy do
-  desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-
-    end
-  end
-
+  after :updated, :link_files
   after :publishing, :restart
 end
