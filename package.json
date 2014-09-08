@@ -6,8 +6,17 @@
   "dependencies": {
     "express": "4.4.4",
     "morgan": "1.1.1",
-    "amqplib": "0.2.0"
+    "memcached": "0.2.8",
+    "minimist": "0.2.0",
+    "fibers":"1.0.2",
+    "newrelic": "1.10.3"
   },
   "devDependencies": {
+    "mocha": "1.20.1",
+    "supertest": "0.13.0",
+    "should": "4.0.4"
+  },
+  "scripts": {
+    "test": "mocha"
   }
 }
