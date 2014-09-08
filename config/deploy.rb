@@ -12,7 +12,14 @@ namespace :deploy do
   desc 'Link required files'
   task :link_files do
     on roles(:app) do
-      # do nothing
+      exec "ln -nfs #{shared_path.join('newrelic.js')} newrelic.js"
+    end
+  end
+
+  desc 'Restart app'
+  task :restart do
+    on roles(:app) do
+      exec "sudo restart #{fetch(:application)} || sudo start #{fetch(:application)}"
     end
   end
 
