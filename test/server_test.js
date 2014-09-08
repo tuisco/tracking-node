@@ -48,6 +48,24 @@ describe("The server", function () {
         });
     });
 
+    it("queues every message super_poller", function (done) {
+      var i = 0;
+
+      function repeated() {
+        if (i < 500) {
+          i += 1;
+          request(app)
+            .get("/reevoomark/track/impression?product_id=bar")
+            .end(repeated);
+        } else {
+          fakeStarling.received.length.should.equal(500);
+          done();
+        }
+      }
+
+      repeated();
+    });
+
     it("responds with a gif file", function (done) {
       request(app)
         .get("/reevoomark/track/impression?product_id=bar")
