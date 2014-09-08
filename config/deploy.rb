@@ -9,20 +9,21 @@ set :hostnames, YAML.load_file("config/hosts.#{fetch(:stage)}.yml")["hosts"]
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 namespace :deploy do
-  desc 'Link required files'
-  task :link_files do
+  desc 'Link newrelic js'
+  task :newrelic do
     on roles(:app) do
-      exec "ln -nfs #{shared_path.join('newrelic.js')} newrelic.js"
+      execute "rm #{current_path.join('newrelic.js')}"
+      execute "ln -s #{shared_path.join('newrelic.js')} #{current_path.join('newrelic.js')}"
     end
   end
 
   desc 'Restart app'
   task :restart do
     on roles(:app) do
-      exec "sudo restart #{fetch(:application)} || sudo start #{fetch(:application)}"
+      execute "sudo restart #{fetch(:application)} || sudo start #{fetch(:application)}"
     end
   end
 
-  after :updated, :link_files
+  after :publishing, :newrelic
   after :publishing, :restart
 end
