@@ -12,14 +12,14 @@ describe("Starling", function(){
 
   describe('#push', function(){
     it("pushes onto a queue and calls the callback", function(done){
-      var starling = new Starling(["localhost:22122"]);
+      var starling = new Starling(["localhost:11211"]);
       starling.push('test-queue', 'message', function(){
         done();
       });
     });
 
     it("pushes to another server if a server does not respond", function(done){
-      var starling = new Starling(["localhost:1", "localhost:22122"]);
+      var starling = new Starling(["localhost:22122", "localhost:11211"]);
       starling.push('test-queue', 'message', function(){
         starling.push('test-queue', 'message', function() {
           done();
